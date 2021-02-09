@@ -19,3 +19,18 @@
   width: 70px;
   height: 20px;
 }
+.grid {
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.show {
+  list-style: none;
+  background: violet;
+  color: black;
+}
+.showFavourite {
+  list-style: none;
+  border: solid 2px black;
+  color: violet;
+}
