@@ -3,7 +3,6 @@
 // Global var
 let shows = [];
 let favorites = [];
-let xButtons = [];
 
 //Get data from Local Storage
 const getDataFromLocalStorage = () => {
@@ -156,12 +155,16 @@ const isFavoriteShow = (show) => {
 
 // Remove from favorites
 const deleteFromFavorites = (ev) => {
-    const clickedButton = ev.currentTarget.dataset.id;
+    const clickedButton = parseInt(ev.currentTarget.dataset.id);
     console.log(clickedButton)
-    const favoritesFound = favorites.remove(function (favorite) {
+    // Find index favorite clicked
+    const favoritesFoundIndex = favorites.findIndex(function (favorite) {
         return favorite.show.id === clickedButton;
     });
-    paintShowsinFavorites();
+    favorites.splice(favoritesFoundIndex, 1);
+    
+    setInLocalStorage ();
+    paintShowsinFavorites ();
 };
 
 const listenFavoritesEvents = () => {
