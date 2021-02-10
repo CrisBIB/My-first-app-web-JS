@@ -11,7 +11,21 @@ const getDataFromLocalStorage = () => {
         favorites = JSON.parse(localStorageFavorites);
     }
     paintShowsinFavorites();
+};
+
+// Reset favorites
+const resetButton = document.querySelector('.js-reset');
+
+const handleReset = () => {
+    favorites = [];
+
+    setInLocalStorage ();
+    paintShowsinFavorites();
+    paintShowsInResults();
 }
+
+resetButton.addEventListener('click', handleReset);
+
 // Avoid form submit
 const formElement = document.querySelector('.js-form');
 
@@ -43,15 +57,16 @@ const getDataFromApi = () => {
 };
 
 // Paint search results
-const resultsElement = document.querySelector('.js-results')
+const resultsElement = document.querySelector('.js-results');
+
 const paintShowsInResults = () => {
     let htmlCodeTotal = "";
     for (let show of shows) {
         htmlCodeTotal += getShowsHtmlCode(show);
     };
     resultsElement.innerHTML = `<ul>${htmlCodeTotal}</ul>`;
+
     listenShowsEvents();
-    
 };
 
 const getShowsHtmlCode = show => {
@@ -164,7 +179,8 @@ const deleteFromFavorites = (ev) => {
     favorites.splice(favoritesFoundIndex, 1);
     
     setInLocalStorage ();
-    paintShowsinFavorites ();
+    paintShowsinFavorites();
+    paintShowsInResults();
 };
 
 const listenFavoritesEvents = () => {
