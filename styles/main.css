@@ -11,9 +11,6 @@
   width: 250px;
   margin-left: 0;
 }
-.favorites {
-  margin-left: 0;
-}
 
 .button {
   width: 70px;
@@ -29,8 +26,15 @@
   background: violet;
   color: black;
 }
-.showFavourite {
+.selecFavorite {
   list-style: none;
   border: solid 2px black;
   color: violet;
+}
+.favorites {
+  display: flex;
+}
+.favoriteImg {
+  width: 100px;
+  height: 150px;
 }
