@@ -3,13 +3,19 @@
 // Global var
 let shows = [];
 let favorites = [];
+let xButtons = [];
 
-const inputElement = document.querySelector('.js-input');
-
-console.log(inputElement.value);
-
+//Get data from Local Storage
+const getDataFromLocalStorage = () => {
+    const localStorageFavorites = localStorage.getItem('favorites');
+    if (localStorageFavorites !== null) {
+        favorites = JSON.parse(localStorageFavorites);
+    }
+    paintShowsinFavorites();
+}
 // Avoid form submit
 const formElement = document.querySelector('.js-form');
+
 function handleForm(ev) {
     ev.preventDefault();
 };
@@ -17,14 +23,16 @@ formElement.addEventListener('submit', handleForm);
 
 // Search by click
 const searchElement = document.querySelector('.js-button');
+
 function handleSearch() {
     getDataFromApi();
 };
-
 searchElement.addEventListener('click', handleSearch);
 
 // Call to API
-function getDataFromApi() {
+const inputElement = document.querySelector('.js-input');
+
+const getDataFromApi = () => {
     let inputValue = inputElement.value;
     fetch(`https://api.tvmaze.com/search/shows?q=${inputValue}`)
         .then(response => response.json())
@@ -47,7 +55,7 @@ const paintShowsInResults = () => {
     
 };
 
-function getShowsHtmlCode(show) {
+const getShowsHtmlCode = show => {
     let htmlCode = "";
     let isFavoriteClass;
     if (isFavoriteShow(show)) {
@@ -72,7 +80,7 @@ const favoritesList = document.querySelector('.js-favorites');
 
 const getFavoritesHtmlCode = favorite => {
     let htmlCode = "";
-    htmlCode += `<li class="favorites" id=${favorite.show.id}>`;
+    htmlCode += `<div class="favoriteContainer"><li class="favorites" id=${favorite.show.id}>`;
     if (favorite.show.image !== null) {
         htmlCode += `<img class="favoriteImg" src="${favorite.show.image.medium}"></img>`;
     } else {
@@ -81,22 +89,30 @@ const getFavoritesHtmlCode = favorite => {
         };
     htmlCode += `<h3 class="favoriteTitle">${favorite.show.name}</h3>`;
     htmlCode += `</li>`;
+    htmlCode += `<button data-id=${favorite.show.id} class="removeButton js-remove">x</button>`
+    htmlCode += `</div>`;
     return htmlCode;
 };
 
 const paintShowsinFavorites = () => {
-    favoritesList.innerHTML = "";
+    favoritesList.innerHTML = "<h2>Mis series favoritas</h2>";
     let htmlCodeTotal = "";
     for (let favorite of favorites) {
         htmlCodeTotal += getFavoritesHtmlCode(favorite);
     };
     favoritesList.innerHTML += `<ul>${htmlCodeTotal}</ul>`;
     
-    listenShowsEvents();
+    listenFavoritesEvents();
 };
 
-//Event to us/select as favorite from search result
-function listenShowsEvents() {
+// Set in local storage
+const setInLocalStorage = () => {
+    stringFavorites = JSON.stringify(favorites);
+    localStorage.setItem('favorites', stringFavorites);   
+};
+
+//Event to un/select as favorite from search result
+const listenShowsEvents = () => {
     const showsElements = document.querySelectorAll('.js-show');
     for (const showElement of showsElements) {
         showElement.addEventListener('click', addToFavorites);
@@ -107,22 +123,28 @@ const addToFavorites = ev => {
     // Get id from clicked show
     const clickedShowId = parseInt(ev.currentTarget.dataset.id);
     // Find show clicked
-    let foundShow;
-    for (const show of shows) {
-        if (show.show.id === clickedShowId) {
-            foundShow = show;
-        }
+    const showFound = shows.find(show => show.show.id === clickedShowId);
+   // Find index favorite clicked
+    const favoritesFoundIndex = favorites.findIndex(function (favorite) {
+        return favorite.show.id === clickedShowId;
+    }); 
+    // Add/remove show to favorite list
+    if (favoritesFoundIndex === -1) {
+        const showFound = shows.find(function (show) {
+          return show.show.id === clickedShowId;
+        });
+        favorites.push(showFound);
+      } else {
+        favorites.splice(favoritesFoundIndex, 1);
     }
-    // Add show to favorite list
-    favorites.push(foundShow);
+    setInLocalStorage();
     paintShowsinFavorites();
     paintShowsInResults();
 };
 
 // Function to identify as favourite
-function isFavoriteShow(show) {
+const isFavoriteShow = (show) => {
     const favoriteFound = favorites.find((favorite) => {
-        console.log (favorite.show.id, show.show.id)
         return favorite.show.id === show.show.id;
     });
     if (favoriteFound === undefined) {
@@ -131,3 +153,23 @@ function isFavoriteShow(show) {
       return true;
     }
 };
+
+// Remove from favorites
+const deleteFromFavorites = (ev) => {
+    const clickedButton = ev.currentTarget.dataset.id;
+    console.log(clickedButton)
+    const favoritesFound = favorites.remove(function (favorite) {
+        return favorite.show.id === clickedButton;
+    });
+    paintShowsinFavorites();
+};
+
+const listenFavoritesEvents = () => {
+    const removeButtons = document.querySelectorAll('.js-remove');
+    for (const removeButton of removeButtons) {
+        removeButton.addEventListener('click', deleteFromFavorites);
+    }
+};
+
+// Start web
+getDataFromLocalStorage();

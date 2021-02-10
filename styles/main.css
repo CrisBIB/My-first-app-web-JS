@@ -33,8 +33,24 @@
 }
 .favorites {
   display: flex;
+  flex-direction: column;
 }
 .favoriteImg {
   width: 100px;
   height: 150px;
+}
+.favoriteContainer {
+  display: flex;
+}
+
+.removeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-style: none;
+  background: purple;
+  color: aliceblue;
 }
