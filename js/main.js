@@ -49,9 +49,18 @@ const paintShowsInResults = () => {
     for (let show of shows) {
         htmlCodeTotal += getShowsHtmlCode(show);
     };
-    resultsElement.innerHTML = `<ul>${htmlCodeTotal}</ul>`;
+    resultsElement.innerHTML = `<span>Hay ${shows.length} resultados</span><ul>${htmlCodeTotal}</ul>`;
     listenShowsEvents();
-    
+
+   /*  if (shows.length > 2) {
+        console.log("El párrafo es mayor que 2")
+    } else if (shows.length > 5) {
+        console.log("El párrafo es mayor que 5")
+    } else if (shows.length > 9) {
+        console.log("El párrafo es mayor que 9")
+    } else {
+        console.log("El párrafo es menor que 2")
+    } */
 };
 
 const getShowsHtmlCode = show => {
@@ -64,6 +73,7 @@ const getShowsHtmlCode = show => {
     }
     htmlCode += `<li class="js-show show ${isFavoriteClass}" data-id=${show.show.id}>`;
     if (show.show.image !== null) {
+        htmlCode += `<p class"dateShow">${show.show.premiered}</p>`;
         htmlCode += `<img src="${show.show.image.medium}"></img>`;
     } else {
         htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/?
@@ -81,7 +91,7 @@ const getFavoritesHtmlCode = favorite => {
     let htmlCode = "";
     htmlCode += `<div class="favoriteContainer"><li class="favorites" id=${favorite.show.id}>`;
     if (favorite.show.image !== null) {
-        htmlCode += `<img class="favoriteImg" src="${favorite.show.image.medium}"></img>`;
+        htmlCode += `<img class="favoriteImg js-favoriteImg" src="${favorite.show.image.medium}"></img>`;
     } else {
         htmlCode += `<img class="favoriteImg" src="https://via.placeholder.com/210x295/ffffff/666666/?
         text=TV"></img>`
@@ -164,13 +174,24 @@ const deleteFromFavorites = (ev) => {
     favorites.splice(favoritesFoundIndex, 1);
     
     setInLocalStorage ();
-    paintShowsinFavorites ();
+    paintShowsinFavorites();
+    paintShowsInResults();
+};
+
+const paintTitleFavorites = () => {
+    for (const favorite of favorites) {
+        console.log(`${favorite.show.name}`);
+    }
 };
 
 const listenFavoritesEvents = () => {
     const removeButtons = document.querySelectorAll('.js-remove');
     for (const removeButton of removeButtons) {
         removeButton.addEventListener('click', deleteFromFavorites);
+    }
+    const favoriteElements = document.querySelectorAll('.js-favoriteImg');
+    for (const favoriteElement of favoriteElements) {
+        favoriteElement.addEventListener('click', paintTitleFavorites);
     }
 };
 
