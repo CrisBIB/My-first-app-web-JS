@@ -79,7 +79,7 @@ const getShowsHtmlCode = show => {
     }
     htmlCode += `<li class="js-show show ${isFavoriteClass}" data-id=${show.show.id}>`;
     if (show.show.image !== null) {
-        htmlCode += `<img src="${show.show.image.medium}"></img>`;
+        htmlCode += `<img class="resultImg" src="${show.show.image.medium}"></img>`;
     } else {
         htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/?
         text=TV"></img>`
@@ -94,27 +94,28 @@ const favoritesList = document.querySelector('.js-favorites');
 
 const getFavoritesHtmlCode = favorite => {
     let htmlCode = "";
-    htmlCode += `<div class="favoriteContainer"><li class="favorites" id=${favorite.show.id}>`;
+    htmlCode += `<li class="favorites" id=${favorite.show.id}>`;
     if (favorite.show.image !== null) {
         htmlCode += `<img class="favoriteImg" src="${favorite.show.image.medium}"></img>`;
     } else {
         htmlCode += `<img class="favoriteImg" src="https://via.placeholder.com/210x295/ffffff/666666/?
         text=TV"></img>`
-        };
+    };
+    htmlCode += `<div class="title-reset">`
     htmlCode += `<h3 class="favoriteTitle">${favorite.show.name}</h3>`;
-    htmlCode += `</li>`;
     htmlCode += `<button data-id=${favorite.show.id} class="removeButton js-remove">x</button>`
-    htmlCode += `</div>`;
+    htmlCode += `</div>`
+    htmlCode += `</li>`;
     return htmlCode;
 };
 
 const paintShowsinFavorites = () => {
-    favoritesList.innerHTML = "<h2>Mis series favoritas</h2>";
+    favoritesList.innerHTML = "";
     let htmlCodeTotal = "";
     for (let favorite of favorites) {
         htmlCodeTotal += getFavoritesHtmlCode(favorite);
     };
-    favoritesList.innerHTML += `<ul>${htmlCodeTotal}</ul>`;
+    favoritesList.innerHTML += `${htmlCodeTotal}`;
     
     listenFavoritesEvents();
 };
@@ -171,7 +172,7 @@ const isFavoriteShow = (show) => {
 // Remove from favorites
 const deleteFromFavorites = (ev) => {
     const clickedButton = parseInt(ev.currentTarget.dataset.id);
-    console.log(clickedButton)
+    
     // Find index favorite clicked
     const favoritesFoundIndex = favorites.findIndex(function (favorite) {
         return favorite.show.id === clickedButton;

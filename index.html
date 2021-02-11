@@ -9,23 +9,26 @@
     <title>My favorite tv shows</title>
 </head>
 
-<body>
+<body class="body">
     <header>
         <h1 class="title">Buscador de series</h1>
     </header>
-    <main class="grid">
-        <div class="column1">
-            <h2>Encuentra tu serie</h2>
-            <form class="js-form form">
-                <input class="js-input input" type="text" name="" id="" placeholder="Escribr aquí el nombre de la serie"
-                    value="">
-                <input class="js-button searchButton" type="button" value="Search">
-            </form>
-            <div class="js-favorites favorites"></div>
-            <button class="js-reset resetButton">Resetea</button>
-        </div>
-        <div class="column2 js-results"></div>
+    <main>
+        <h2 class="header">Encuentra tu serie</h2>
+        <form class="js-form form">
+            <input class="js-input input" type="text" name="" id="" placeholder="Escribr aquí el nombre de la serie"
+                value="this is us">
+            <input class="js-button searchButton" type="button" value="Search">
+        </form>
+        <div class="grid">
+            <div class="column1">
+                <h2>Mis series favoritas</h2>
+                <ul class="js-favorites favoritesContainer"></ul>
+                <button class="js-reset resetButton">Resetea</button>
+            </div>
+            <div class="column2 js-results"></div>
 
+        </div>
     </main>
 
     <script src="./js/main.js"></script>
