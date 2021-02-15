@@ -1,22 +1,36 @@
 * {
   margin: 10px 10px;
 }
+
+.title,
+.header {
+  text-align: center;
+}
+
 .body {
   background-image: url(/images/background_1.png);
-  background-size: contain;
+  background-repeat: repeat;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: seagreen;
+  color: rgb(27, 85, 52);
+  width: 100%;
+  margin: 0;
 }
 
 .form {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .input {
-  width: 250px;
+  width: 350px;
   margin-left: 0;
+  padding-left: 10px;
+  background: rgb(230, 229, 215);
+  border-radius: 10px;
+  border: solid 1px seagreen;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .searchButton,
@@ -27,6 +41,21 @@
   border-style: none;
   background-color: seagreen;
   color: aliceblue;
+  text-decoration: none;
+  outline: none;
+}
+
+.resetButton:hover {
+  background-color: seagreen;
+}
+
+.searchButton:hover {
+  background: orange;
+}
+
+.resultsImg {
+  width: 170px;
+  height: 235px;
 }
 
 .resetButton {
@@ -35,13 +64,19 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 20% 80%;
 }
 
 .column1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+}
+
+.grid-results {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .show {
@@ -53,8 +88,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 280px;
-  height: 370px;
+  width: 250px;
+  height: 330px;
   border: solid 3px rgba(90, 178, 230, 0.5);
   border-radius: 5%;
 }
@@ -72,10 +107,12 @@
   align-items: flex-start;
   padding-left: 0;
   color: black;
+  color: rgb(87, 78, 78);
 }
 .favorites {
   display: flex;
   flex-direction: column-reverse;
+  align-items: center;
 }
 .listFavorites {
   display: flex;
@@ -92,10 +129,11 @@
   color: aliceblue;
 }
 
-.title-reset {
+.title-X {
   display: flex;
   flex-direction: row;
   margin: 0;
+  font-size: 12px;
 }
 
 .removeButton {
@@ -106,6 +144,6 @@
   height: 20px;
   border-radius: 50%;
   border-style: none;
-  background: purple;
+  background: orange;
   color: aliceblue;
 }
