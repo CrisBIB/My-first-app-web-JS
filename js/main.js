@@ -11,7 +11,21 @@ const getDataFromLocalStorage = () => {
         favorites = JSON.parse(localStorageFavorites);
     }
     paintShowsinFavorites();
+};
+
+// Reset favorites
+const resetButton = document.querySelector('.js-reset');
+
+const handleReset = () => {
+    favorites = [];
+
+    setInLocalStorage ();
+    paintShowsinFavorites();
+    paintShowsInResults();
 }
+
+resetButton.addEventListener('click', handleReset);
+
 // Avoid form submit
 const formElement = document.querySelector('.js-form');
 
@@ -43,24 +57,16 @@ const getDataFromApi = () => {
 };
 
 // Paint search results
-const resultsElement = document.querySelector('.js-results')
+const resultsElement = document.querySelector('.js-results');
+
 const paintShowsInResults = () => {
     let htmlCodeTotal = "";
     for (let show of shows) {
         htmlCodeTotal += getShowsHtmlCode(show);
     };
-    resultsElement.innerHTML = `<span>Hay ${shows.length} resultados</span><ul>${htmlCodeTotal}</ul>`;
-    listenShowsEvents();
+    resultsElement.innerHTML = `<ul class="grid-results">${htmlCodeTotal}</ul>`;
 
-   /*  if (shows.length > 2) {
-        console.log("El párrafo es mayor que 2")
-    } else if (shows.length > 5) {
-        console.log("El párrafo es mayor que 5")
-    } else if (shows.length > 9) {
-        console.log("El párrafo es mayor que 9")
-    } else {
-        console.log("El párrafo es menor que 2")
-    } */
+    listenShowsEvents();
 };
 
 const getShowsHtmlCode = show => {
@@ -73,13 +79,13 @@ const getShowsHtmlCode = show => {
     }
     htmlCode += `<li class="js-show show ${isFavoriteClass}" data-id=${show.show.id}>`;
     if (show.show.image !== null) {
-        htmlCode += `<p class"dateShow">${show.show.premiered}</p>`;
-        htmlCode += `<img src="${show.show.image.medium}"></img>`;
+        //htmlCode += `<p class"dateShow">${show.show.premiered}</p>`;
+        htmlCode += `<img class="resultsImg" src="${show.show.image.medium}"></img>`;
     } else {
-        htmlCode += `<img src="https://via.placeholder.com/210x295/ffffff/666666/?
+        htmlCode += `<img class="resultsImg" src="https://via.placeholder.com/210x295/ffffff/666666/?
         text=TV"></img>`
         };
-    htmlCode += `<h3 class="title">${show.show.name}</h3>`;
+    htmlCode += `<h4 class="title">${show.show.name}</h4>`;
     htmlCode += `</li>`;
     return htmlCode;
 };
@@ -89,27 +95,28 @@ const favoritesList = document.querySelector('.js-favorites');
 
 const getFavoritesHtmlCode = favorite => {
     let htmlCode = "";
-    htmlCode += `<div class="favoriteContainer"><li class="favorites" id=${favorite.show.id}>`;
+    htmlCode += `<li class="favorites" id=${favorite.show.id}>`;
     if (favorite.show.image !== null) {
         htmlCode += `<img class="favoriteImg js-favoriteImg" src="${favorite.show.image.medium}"></img>`;
     } else {
         htmlCode += `<img class="favoriteImg" src="https://via.placeholder.com/210x295/ffffff/666666/?
         text=TV"></img>`
-        };
+    };
+    htmlCode += `<div class="title-X">`
     htmlCode += `<h3 class="favoriteTitle">${favorite.show.name}</h3>`;
-    htmlCode += `</li>`;
     htmlCode += `<button data-id=${favorite.show.id} class="removeButton js-remove">x</button>`
-    htmlCode += `</div>`;
+    htmlCode += `</div>`
+    htmlCode += `</li>`;
     return htmlCode;
 };
 
 const paintShowsinFavorites = () => {
-    favoritesList.innerHTML = "<h2>Mis series favoritas</h2>";
+    favoritesList.innerHTML = "";
     let htmlCodeTotal = "";
     for (let favorite of favorites) {
         htmlCodeTotal += getFavoritesHtmlCode(favorite);
     };
-    favoritesList.innerHTML += `<ul>${htmlCodeTotal}</ul>`;
+    favoritesList.innerHTML += `${htmlCodeTotal}`;
     
     listenFavoritesEvents();
 };
@@ -166,7 +173,7 @@ const isFavoriteShow = (show) => {
 // Remove from favorites
 const deleteFromFavorites = (ev) => {
     const clickedButton = parseInt(ev.currentTarget.dataset.id);
-    console.log(clickedButton)
+    
     // Find index favorite clicked
     const favoritesFoundIndex = favorites.findIndex(function (favorite) {
         return favorite.show.id === clickedButton;
