@@ -2,54 +2,25 @@
   margin: 10px 10px;
 }
 
-.title,
-.header {
-  text-align: center;
-}
-
 .body {
-  background-image: url("../images/background.png");
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: rgb(27, 85, 52);
+  background-image: url();
+  background-repeat: repeat;
   width: 100%;
   margin: 0;
+}
+.main {
+  display: grid;
+  grid-template-columns: 60% 40%;
 }
 
 .form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-around;
+}
+.chi-button {
   justify-content: center;
-}
-
-.input {
-  width: 350px;
-  margin-left: 0;
-  padding-left: 10px;
-  background: rgb(230, 229, 215);
-  border-radius: 10px;
-  border: solid 1px seagreen;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.searchButton,
-.resetButton {
-  width: 100px;
-  height: 30px;
-  border-radius: 30px;
-  border-style: none;
-  background-color: seagreen;
-  color: aliceblue;
-  text-decoration: none;
-  outline: none;
-}
-
-.resetButton:hover {
-  background-color: seagreen;
-}
-
-.searchButton:hover {
-  background: orange;
 }
 
 .resultsImg {
@@ -57,25 +28,10 @@
   height: 235px;
 }
 
-.resetButton {
-  background: orange;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 20% 80%;
-}
-
-.column1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
 .grid-results {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0;
 }
 
 .show {
@@ -87,9 +43,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  height: 330px;
-  border: solid 3px rgba(90, 178, 230, 0.5);
+  /* width: 250px;
+  height: 330px; */
   border-radius: 5%;
 }
 
@@ -105,12 +60,10 @@
   flex-direction: column;
   align-items: flex-start;
   padding-left: 0;
-  color: black;
-  color: rgb(87, 78, 78);
 }
 .favorites {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
 }
 .listFavorites {
@@ -130,19 +83,32 @@
 
 .title-X {
   display: flex;
-  flex-direction: row;
+  place-content: center;
   margin: 0;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .removeButton {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   border-style: none;
   background: orange;
   color: aliceblue;
+  margin: 13px 5px;
+}
+
+@media all and (min-width: 768px) {
+  .grid-results {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  .grid-results {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
