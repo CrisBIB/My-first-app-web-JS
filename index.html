@@ -14,26 +14,27 @@
 </head>
 
 <body class="body">
-    <header>
-        <h1 class="-text--h1 -text--center -text--uppercase ">Buscador de series</h1>
+    <header class="header">
+        <h1 class="-text--h1 -text--center -text--uppercase ">Buscador de series TV</h1>
     </header>
-    <main class="main">
-        <div>
-            <h2 class="-text--h2">Encuentra tu serie</h2>
+    <main class="gridMain">
+        <div class="searchShowsColumn">
             <form class="js-form form">
-                <input class="js-input chi-input -text--bolder" type="text" name="" id=""
-                    placeholder="Escribe aquí el nombre de la serie">
+                <input class="js-input chi-input -text--bold" type="text" name="" id=""
+                    placeholder="Encuentra la serie que buscas">
                 <button class="chi-button -dark js-button searchButton">Buscar</button>
             </form>
             <div class="js-results"></div>
         </div>
-        <div class="favorites">
-            <h2 class="-text--h3">Mis series favoritas</h2>
-            <ul class="js-favorites favoritesContainer"></ul>
-            <button class="chi-button -primary js-reset">Resetea</button>
+        <div class="favoritesColumn">
+            <h2 class="-text--h3 ">Mis series favoritas</h2>
+            <ul class="js-favorites favoritesResults"></ul>
+            <button class="chi-button -primary js-reset">Limpiar</button>
         </div>
-
     </main>
+    <footer class="footer">
+        <img class="chi-brand logoLumen" src="https://assets.ctl.io/images/lumen-logo-inverse.svg" alt="Lumen">
+    </footer>
 
     <script src="./js/main.js"></script>
     <script src="https://assets.ctl.io/chi/3.12.0/js/chi.js"></script>

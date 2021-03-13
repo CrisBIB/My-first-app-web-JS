@@ -1,91 +1,84 @@
 * {
   margin: 10px 10px;
+  box-sizing: border-box;
 }
 
-.body {
-  background-image: url();
-  background-repeat: repeat;
-  width: 100%;
-  margin: 0;
+.chi .-text--h1 {
+  font-size: 35px !important;
+  line-height: 45px !important;
 }
-.main {
+.gridMain {
   display: grid;
-  grid-template-columns: 60% 40%;
+  justify-content: center;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  height: 100px;
-  justify-content: space-around;
-}
-.chi-button {
   justify-content: center;
+  margin-top: 0;
+}
+.chi .chi-input {
+  width: 100%;
+  margin: 10px 0;
+  margin-top: 0;
 }
 
-.resultsImg {
-  width: 170px;
-  height: 235px;
+.chi-button {
+  justify-content: center;
+  align-self: center;
 }
 
 .grid-results {
   display: grid;
   grid-template-columns: 1fr;
-  padding: 0;
 }
 
 .show {
   list-style: none;
-  background: rgba(218, 165, 32, 0.2);
-  color: rgb(87, 78, 78);
   font-size: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: 250px;
-  height: 330px; */
-  border-radius: 5%;
+  width: 170px;
+  margin: 10px 0;
+}
+.resultsImg {
+  width: 150px;
+  margin-top: 0;
 }
 
 .selecFavorite {
   list-style: none;
-  background: rgba(90, 178, 230, 0.5);
+  background: #38c6f4;
   border: solid 2px white;
   color: aliceblue;
 }
 
-.favoritesContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 0;
-}
-.favorites {
+.favoritesColumn {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.listFavorites {
-  display: flex;
-  flex-direction: column;
+
+.favoritesResults {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding-left: 0;
+  list-style: none;
+}
+
+.favoriteItem {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .favoriteImg {
-  width: 100px;
-  height: 150px;
-  border-radius: 10%;
-  list-style: none;
+  width: 70px;
   border: solid 2px rgba(90, 178, 230, 0.5);
   color: aliceblue;
-}
-
-.title-X {
-  display: flex;
-  place-content: center;
   margin: 0;
-  font-size: 10px;
 }
 
 .removeButton {
@@ -96,19 +89,53 @@
   height: 15px;
   border-radius: 50%;
   border-style: none;
-  background: orange;
+  background: #083176;
   color: aliceblue;
-  margin: 13px 5px;
+  margin: 0 4px;
+  font-size: x-small;
+  padding-bottom: 2px;
+}
+.footer {
+  background: black;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+}
+.chi .chi-brand {
+  width: 70px;
+  margin-left: 20px;
 }
 
 @media all and (min-width: 768px) {
+  .gridMain {
+    grid-template-columns: 70% 30%;
+    margin: 0;
+  }
+  .form {
+    flex-direction: row;
+  }
+  .chi .chi-input {
+    width: 70%;
+    margin-right: 10px;
+  }
   .grid-results {
     grid-template-columns: 1fr 1fr;
+  }
+  .favoritesContainer {
+    grid-template-columns: 1fr;
+  }
+  .favoriteImg {
+    width: 100px;
   }
 }
 
 @media all and (min-width: 1200px) {
   .grid-results {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  .favoritesContainer {
+    grid-template-columns: 1fr 1fr;
   }
 }

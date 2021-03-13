@@ -77,6 +77,7 @@ const getShowsHtmlCode = (show) => {
     isFavoriteClass = "";
   }
   htmlCode += `<li class="js-show -b--1 -b--primary show ${isFavoriteClass}" data-id=${show.show.id}>`;
+  htmlCode += `<h4 class="-text--h4 -text--center">${show.show.name}</h4>`;
   if (show.show.image !== null) {
     //htmlCode += `<p class"dateShow">${show.show.premiered}</p>`;
     htmlCode += `<img class="resultsImg" src="${show.show.image.medium}"></img>`;
@@ -84,7 +85,6 @@ const getShowsHtmlCode = (show) => {
     htmlCode += `<img class="resultsImg" src="https://via.placeholder.com/210x295/ffffff/666666/?
         text=TV"></img>`;
   }
-  htmlCode += `<h4 class="title">${show.show.name}</h4>`;
   htmlCode += `</li>`;
   return htmlCode;
 };
@@ -94,19 +94,16 @@ const favoritesList = document.querySelector(".js-favorites");
 
 const getFavoritesHtmlCode = (favorite) => {
   let htmlCode = "";
-  htmlCode += `<li class="favorites" id=${favorite.show.id}>`;
-  htmlCode += `<div class="title-X">`;
-  htmlCode += `<h4 class="-text--h4">${favorite.show.name}</h4>`;
+  htmlCode += `<li class="favoriteItem" id=${favorite.show.id}>`;
   htmlCode += `<button data-id=${favorite.show.id} class="removeButton js-remove">x</button>`;
-  htmlCode += `</div>`;
   if (favorite.show.image !== null) {
     htmlCode += `<img class="favoriteImg js-favoriteImg" src="${favorite.show.image.medium}"></img>`;
   } else {
     htmlCode += `<img class="favoriteImg" src="https://via.placeholder.com/210x295/ffffff/666666/?
         text=TV"></img>`;
   }
-
   htmlCode += `</li>`;
+
   return htmlCode;
 };
 
