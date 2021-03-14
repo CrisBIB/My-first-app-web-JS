@@ -1,8 +1,11 @@
 "user strict";
 
-// Global var
+// Global const
 let shows = [];
 let favorites = [];
+let pageNumber = 1;
+const pageSize = 4;
+let pagination;
 
 //Get data from Local Storage
 const getDataFromLocalStorage = () => {
@@ -51,19 +54,74 @@ const getDataFromApi = () => {
     .then((response) => response.json())
     .then((data) => {
       shows = data;
-      paintShowsInResults();
+      paintShowsInResults(shows);
     });
 };
 
+function paginate(array, page_size, page_number) {
+  return array.slice((page_number - 1) * page_size, page_number * page_size);
+}
+function nextPage() {
+  const nextButton = document.querySelector(".js-next");
+  pageNumber++;
+  paintShowsInResults(pagination);
+}
+function previousPage() {
+  const previousButton = document.querySelector(".js-previous");
+  pageNumber--;
+  paintShowsInResults(pagination);
+}
+
 // Paint search results
 const resultsElement = document.querySelector(".js-results");
+const pageElement = document.querySelector(".js-page");
 
-const paintShowsInResults = () => {
+const paintShowsInResults = (showResults) => {
   let htmlCodeTotal = "";
-  for (let show of shows) {
+  let pagination = paginate(shows, pageSize, pageNumber);
+  for (let show of pagination) {
     htmlCodeTotal += getShowsHtmlCode(show);
   }
   resultsElement.innerHTML = `<ul class="grid-results">${htmlCodeTotal}</ul>`;
+
+  let pageCont = Math.ceil(shows.length / pageSize);
+  let previousButton =
+    pageNumber > 1
+      ? `<button class="js-previous chi-button -icon -flat" onclick='previousPage()'><div class="chi-button__content">
+      <i class="chi-icon icon-chevron-left" aria-hidden="true"></i>
+    </div></button>`
+      : `<button class="js-next chi-button -icon -flat" disabled><div class="chi-button__content">
+      <i class="chi-icon icon-chevron-left" aria-hidden="true"></i>
+    </div></button>`;
+
+  let nextButton =
+    pageNumber < pageCont
+      ? `<button class="chi-button -icon -flat" onclick='nextPage()'><div class="chi-button__content">
+      <i class="chi-icon icon-chevron-right" aria-hidden="true"></i>
+    </div></button>`
+      : `<button class="chi-button -icon -flat" disabled><div class="chi-button__content">
+      <i class="chi-icon icon-chevron-right" aria-hidden="true"></i>
+    </div></button>`;
+
+  pageElement.innerHTML = `<nav class="chi-pagination -compact" role="navigation" aria-label="Pagination">
+  <div class="chi-pagination__content">
+    <div class="chi-pagination__center">
+      <div class="chi-pagination__button-group chi-button-group">
+        ${previousButton}
+      </div>
+      <div class="chi-pagination__label">
+        <strong>${pageNumber}</strong>
+        <span>of</span>
+        <strong>${pageCont}</strong>
+      </div>
+      <div class="chi-pagination__button-group chi-button-group">
+        ${nextButton}
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>` /* `${previousButton} ${nextButton}` */;
 
   listenShowsEvents();
 };
