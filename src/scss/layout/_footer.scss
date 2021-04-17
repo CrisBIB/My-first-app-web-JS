@@ -1,0 +1,86 @@
+@import "core/mixins";
+
+.footer {
+  background: $color-footer;
+  color: $color-white;
+  font-family: $font-secondary;
+  @include flex-box(flex, column, center, center);
+  padding-bottom: 30px;
+  @media all and (min-width: 768px) {
+    @include flex-box(flex, row, space-between, initial);
+  }
+  @media all and (min-width: 1280px) {
+    justify-content: space-evenly;
+  }
+  &__scroll-up {
+    margin-bottom: 15px;
+    background: $color-white;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 $color-box-shadow;
+    @include flex-box(flex, row, center, center);
+    transform: translateY(-50%);
+    animation-duration: 5s;
+    animation-name: bounce;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    @keyframes bounce {
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(-50%);
+      }
+      40% {
+        transform: translateY(-50px);
+      }
+      60% {
+        transform: translateY(-50px);
+      }
+    }
+    @media all and (min-width: 768px) {
+      position: absolute;
+      left: 48%;
+    }
+  }
+  &__list {
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 1.88;
+    @include flex-box(flex, column, center, center);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    @media all and (min-width: 768px) {
+      width: 210px;
+      @include flex-box(flex, column, initial, flex-start);
+      margin-top: 45px;
+    }
+    &--link {
+      text-decoration: none;
+      color: $color-white;
+      &:visited {
+        text-decoration: none;
+      }
+    }
+    &--copyright,
+    &--love {
+      font-size: 14px;
+      line-height: 2.14;
+      text-transform: none;
+      @media all and (min-width: 768px) {
+        position: relative;
+        left: 0;
+      }
+    }
+  }
+}
+.components {
+  @media all and (min-width: 768px) {
+    order: -1;
+  }
+  &__love-icon {
+    margin: 0 5px;
+  }
+}

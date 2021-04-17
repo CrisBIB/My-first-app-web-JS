@@ -1,0 +1,14 @@
+@import "core/mixins";
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  &__menu-button {
+    background: $color-menu;
+    height: 44px;
+    width: 44px;
+    @include flex-box(flex, row, center, center);
+  }
+}
