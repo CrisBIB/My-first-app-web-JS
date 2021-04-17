@@ -2,17 +2,17 @@
   margin: 10px 10px;
   box-sizing: border-box;
 }
-.body{
+.body {
   width: 100%;
   height: fit-content;
 }
-.introduction-graphic{
+.introduction-graphic {
   display: flex;
   justify-content: space-around;
   width: 50%;
 }
-.shape--1{
-  border: .25rem solid rgb(56, 198, 244, 0.5);
+.shape--1 {
+  border: 0.25rem solid rgb(56, 198, 244, 0.5);
   border-radius: 4.5rem;
   height: 7rem;
   left: 16rem;
@@ -22,25 +22,25 @@
   position: fixed;
   top: 0;
 }
-.shape--2::before{
+.shape--2::before {
   position: fixed;
   height: 1rem;
   left: 28rem;
   top: 5rem;
   width: 4rem;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 110' height='128' width='128'%3E%3Cpath fill='%23F4F5F6' stroke='%230075C9' stroke-width='4' d='M50 15l50 85H0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    content: "";
-    display: block;
-    height: 8rem;
-    width: 8rem;
-    z-index: -1;
-    opacity: 0.5;
+  background-repeat: no-repeat;
+  content: "";
+  display: block;
+  height: 8rem;
+  width: 8rem;
+  z-index: -1;
+  opacity: 0.5;
 }
-.shape--3{
+.shape--3 {
   position: fixed;
   z-index: -1;
-  border: .25rem solid rgb(12, 158, 217, 0.5);
+  border: 0.25rem solid rgb(12, 158, 217, 0.5);
   height: 7rem;
   left: 5rem;
   top: 4rem;
@@ -93,7 +93,7 @@
   width: 150px;
   margin-top: 0;
 }
-.passPage{
+.passPage {
   display: flex;
   justify-content: center;
   margin: 0;
@@ -150,14 +150,25 @@
 .footer {
   background: black;
   width: 100%;
+  height: 50px;
   margin: 0;
   position: fixed;
   bottom: 0;
-  height: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.cris {
+  color: aliceblue;
+  margin: 20px 30px;
+}
+.cris-icon {
+  width: 20px;
+  padding-right: 5px;
+  margin: 0;
 }
 .chi .chi-brand {
   width: 70px;
-  margin-left: 40px;;
+  margin-left: 40px;
 }
 
 @media all and (min-width: 768px) {
@@ -185,12 +196,14 @@
     width: 100px;
   }
   .footer {
-    background: black;
     width: 100%;
+    height: 80px;
     position: fixed;
     bottom: 0;
     margin: 20px 0 0;
-    height: 40px;
+  }
+  .cris {
+    margin: 30px;
   }
   .chi .chi-brand {
     width: 80px;
@@ -199,18 +212,15 @@
 }
 
 @media all and (min-width: 1200px) {
- 
   .grid-results {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-  
+
   .footer {
-    background: black;
     width: 100%;
     position: fixed;
     bottom: 0;
     margin: 20px 0 0;
-    height: 50px;
   }
   .chi .chi-brand {
     width: 90px;
