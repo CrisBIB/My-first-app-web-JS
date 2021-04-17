@@ -1,8 +1,8 @@
 ![Adalab](https://beta.adalab.es/resources/images/adalab-logo-155x61-bg-white.png)
 
-# My favourite series
+# TV shows finder
 
-**My favourite series** es un ejercicio de evaluación, cuyo objetivo era crear una aplicación web (la primera hecha por mi, casi de manera autónoma) que, tomando los datos de un api y de acuerdo a la búsqueda hecha por el/la usuaria, devolviera un array de series de televisión. Al concluirlo con éxito, he demostrado que mi grado de conocimiento y manejo adquirido en Java Script es óptimo, y que mi destraza programando a este nivel -según el feedback de la evaluación- destaca. Por lo que lo considero todo un hito en mi objetivo a corto plazo de convertirme en **desarrolladora Front-End**
+**TV shows finder** es un ejercicio de evaluación, cuyo objetivo era crear una aplicación web (la primera hecha por mi, casi de manera autónoma) que, tomando los datos de un api y de acuerdo a la búsqueda hecha por el/la usuaria, devolviera un array de series de televisión. Al concluirlo con éxito, he demostrado que mi grado de conocimiento y manejo adquirido en Java Script es óptimo, y que mi destraza programando a este nivel -según el feedback de la evaluación- destaca. Por lo que lo considero todo un hito en mi objetivo a corto plazo de convertirme en **desarrolladora Front-End**
 
 Tras dos días de trabajo intenso, pausado y también disfrutado, este es el resultado **¡Me siento muy orgullosa!** Por haber alcanzado la meta con éxito, pero también por la gestión que hecho del tiempo, la distribución de los esfuerzos y todo el aprendizaje que he sumado durante el desarrollo de la tarea a mi mochila de programmer.
 
