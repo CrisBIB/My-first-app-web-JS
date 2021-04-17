@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" class="chi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="https://assets.ctl.io/chi/3.12.0/assets/images/favicon.svg">
+    <link rel="alternate icon" href="https://assets.ctl.io/chi/3.12.0/assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="https://assets.ctl.io/chi/3.12.0/chi.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <title>My favorite tv shows</title>
+</head>
+
+<body class="body">
+    <header class="header">
+        <div class="introduction-graphic">
+            <div class="shape--1"></div>
+            <div class="shape--2"></div>
+            <div class="shape--3"></div>
+        </div>
+        <h1 class="-text--h1 -text--center -text--uppercase ">Buscador de series TV</h1>
+
+
+    </header>
+    <main class="gridMain">
+        <div class="searchShowsColumn">
+            <form class="js-form form">
+                <input class="js-input chi-input -text--bold" type="text" name="" id=""
+                    placeholder="Encuentra la serie que buscas">
+                <button class="chi-button -dark js-button searchButton">Buscar</button>
+            </form>
+            <div class="js-results"></div>
+            <div class="js-page passPage"></div>
+        </div>
+        <div class="favoritesColumn">
+            <h2 class="-text--h3 -text--center">Mis series favoritas</h2>
+            <ul class="js-favorites favoritesResults"></ul>
+            <button class="chi-button -primary js-reset">Limpiar</button>
+        </div>
+    </main>
+    <footer class="footer">
+        <img class="chi-brand logoLumen" src="https://assets.ctl.io/images/lumen-logo-inverse.svg" alt="Lumen">
+    </footer>
+
+    <script src="./js/main.js"></script>
+    <script src="https://assets.ctl.io/chi/3.12.0/js/chi.js"></script>
+</body>
+
+</html>
